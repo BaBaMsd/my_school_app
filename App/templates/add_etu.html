@@ -1,0 +1,103 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/styel.css">
+</style>
+
+</head>
+{% extends 'principal.html' %}
+{% block title %}
+Page d'inscription 
+ {% endblock %}
+
+ {% block body %}
+ <div class="px-4 py-4">
+  {% if messages %}
+  {% for message in messages %} 
+  <div class="row justify-content-center">  
+      <div class="col-md-6 py-2">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <p>{{ message }}</p> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+{% endif %}
+    <div class="card">
+        <div class="card-header">
+            <h4>Nouveau Etudiant</h4>
+        </div>
+        <div class="card-body">
+            <form id="form" class="row g-3" action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="col-md-4">
+                  <label for="" class="form-label"><b>Nom Complet *</b></label>
+                  <input type="text" class="form-control" Required name="nom" >
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label"><b>NNI *</b></label>
+                    <input type="text" class="form-control" Required name="nni_etu" >
+                  </div>
+                <div class="col-md-4">
+                  <label for="" class="form-label"><b>Date Naissance *</b></label>
+                  <input type="date" class="form-control" Required name="dateNai">
+                </div>
+                <div class="col-md-4">
+                  <label for="" class="form-label"><b>Photo</b></label>
+                  <input type="file" class="form-control"  Required name="etu_photo">
+                </div>
+                
+                <div class="col-md-2">
+                  <label for="validationDefaultUsername" class="form-label"><b>Sexe *</b></label>
+                  <select class="form-select"  Required name="sexe_etu"> 
+                    {% for i in x %}
+                    <option>{{ i }}</option>
+                   
+                    {% endfor %}
+                  </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="" class="form-label"><b>Année Scolaire *</b></label>
+                      {% if an %}
+                      <input type="text" class="form-control"  Required name="annee_scolair" value="{{ an.ann_sco_nom }}" >
+                      {% endif %}
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefault04" class="form-label"><b>Classe *</b></label>
+                    <select class="form-select"  Required name="classe_etu">
+                      {% for i in cl %}                    
+                        <option>{{ i.class_nom }}</option>
+                        {% endfor %}
+                      </select>
+  
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefaultUsername" class="form-label"><b>Frais d'inscription *</b></label>
+                    <input type="text" class="form-control"  Required name="fraisInsc_etu">
+              
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefault03" class="form-label"><b>Mensualités *</b></label>
+                    <input type="text" class="form-control"  Required name="fraisFixe_etu">
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <div  id="input">
+                      <label for="" class="form-label"><b>Contact-Parent *</b></label>
+                      <input type="text" class="form-control" id="txt1" Required name="conn_agent" placeholder="Saisir nom et numero Parent">
+                      <span class="indicatur"></span>
+                    </div>
+                    </div>
+                  
+                <div class="col-12">
+                  <button class="btn btn-success" type="submit">Valider Inscription</button>
+                </div>
+              </form>
+     
+        </div>
+    </div>
+</div>
+
+
+ {% endblock %}
+ </html>

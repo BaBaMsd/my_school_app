@@ -1,0 +1,39 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+ <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="">
+                <div class="card mt-3 shadow">
+                    <div class="card-body">
+                        <form action="" class="row g-3" method="POST">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                <h4>Nouveau Classe </h4>
+                            </div>
+                            <hr>
+                                <div class="col-md-6">
+                                  <label for="" class="form-label">Année Scolaire</label>
+                                  {% if an %}
+                                  <input type="text" class="form-control"  Required name="an_sc" value="{{ an }}" >
+                                  {% endif %}                                </div>
+                                <div class="col-md-6">
+                                  <label for="" class="form-label">Classe</label>
+                                  <input type="text" class="form-control"  Required name="cls">
+                                </div>
+                                <div class="py-1">
+                                    <Button type="submit" class="btn   btn-success px-4" >Ajouter</Button>
+                                </div>
+                            
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ {% endblock %}

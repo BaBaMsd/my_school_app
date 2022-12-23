@@ -1,0 +1,140 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+<div class="container">
+  
+{% if request.user.is_superuser %}  
+<div class="py-3 px-3">
+    <h3>Gestion des notes </h3>
+    <hr class="text">  
+</div>  
+    <div class=" px-3"> 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                <h4>Nouvelle Note</h4>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="etu_id" value="{{ etu.id}}" >
+                                </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control " name="ann_sc" value="{{ an }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control " name="cl_ac" value="{{ etu.classe_etu }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="py-1"><b>Matier</b>  </label>
+                                <select class="form-select"  Required name="matier"> 
+                                    {% for i in x %}
+                                    <option>{{ i.matier_nom }}</option>
+                                   
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                            <div class="form-group">
+                                <label for="" class="py-1"> <b>Note devoir </b></label>
+                                <input type="text" class="form-control " name="dev">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="py-1"> <b>Note examen </b></label>
+                                <input type="text" class="form-control " name="ex">
+                            </div>
+                            <div class="py-3">
+                              <Button type="submit" class="btn   btn-success px-6" >Ajouter</Button>
+                            </div>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-8">
+            <div class="py-1 px-6">
+               <center> <h5 class="px-4">Etudiant(e)  {{ etu.nom_etu}} {{ etu.prenom_etu}}</h5> </center>
+               <center> <h6 class="px-4">Classe: {{ etu.classe_etu }}</h6>  </center>              
+             </div>
+            <div class="card-body">
+
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">MATIER</th>
+                            <th scope="col">NOTE DEVOIR</th>
+                            <th scope="col">NOTE EXAMEN</th>
+                            <th scope="col" colspan="1">OPTIONS</th>
+                     
+                        </thead>
+                        <tbody>
+                          {% for i in nt%}
+                          <tr>
+                                <td>{{ i.matier_nt}}</td>
+                                <td>{{ i.dev_nt}}</td>
+                                <td>{{ i.ex_nt}}</td>
+                                <td><center><a href="{% url 'supNot' i.id %}" class="btn btn btn-danger px-4 " onclick="return confirm('Etes vous sur')">Supprime</a></center></td>
+                               
+                                
+                          
+                          </tr>
+                           {% endfor %}
+                           
+                        </tbody>
+                      </table>
+                    
+            </div>
+        </div>
+    </div>
+    </div>
+{% else %}
+<div class="py-3 px-3">
+    <h3>Notes de l'etudiant </h3>
+    <hr class="col-md-10">  
+    <div class="py-1">
+        <a onclick="window.print()" class="btn btn-danger  px-4">Imprimer</a>
+    </div>
+</div>
+<div class=" px-3">
+<div class="card col-md-10">
+    <div class="py-1 px-6">
+       <center> <h5 class="px-4">Etudiant(e)  {{ etu.nom_etu}} {{ etu.prenom_etu}}</h5> </center>
+       <center> <h6 class="px-4">Classe: {{ etu.classe_etu }}</h6>  </center>              
+     </div>
+    <div class="card-body">
+
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">MATIER</th>
+                    <th scope="col">NOTE DEVOIR</th>
+                    <th scope="col">NOTE EXAMEN</th>
+             
+                </thead>
+                <tbody>
+                  {% for i in nt%}
+                  <tr>
+                        <td>{{ i.matier_nt}}</td>
+                        <td>{{ i.dev_nt}}</td>
+                        <td>{{ i.ex_nt}}</td>
+                        
+                  
+                  </tr>
+                   {% endfor %}
+                   
+                </tbody>
+              </table>
+            
+    </div>
+</div>
+</div>
+{% endif %}
+</div> 
+
+ {% endblock %}

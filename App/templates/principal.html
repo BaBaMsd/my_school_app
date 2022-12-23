@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+
+        
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="{% static  'css/bootstrap.min.css' %}" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="styel.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>  
+    
+       
+    </head>
+    <body>
+        <header class="p-3 bg-info ">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        {% if request.user.is_superuser %}
+                        <li><a href="{% url 'Accueill'%}" class="nav-link px-2 me-2 text-dark btn btn-outline-primary">Accueil</a></li>
+                        
+                        <li><a href="{% url 'add_etu' %}" class="nav-link px-2 me-2 text-dark btn btn-outline-primary">Inscription</a></li>
+                        <li><a href="{% url 'add_emp' %}" class="nav-link px-2 text-dark btn btn-outline-primary">Employee</a></li>
+
+                        {% else %}
+                        <li><a href="{% url 'paranh' %}" class="nav-link px-2 text-dark">Accueil</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                    
+                    <div class="text-end">
+                        {% if request.user.is_authenticated %}
+                        <div class="nav-item dropdown">
+                            <button class=" btn btn-outline-primary btn-succes me-2 text-white dropdown-toggle bg-primary"role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user"></i> {{ request.user}} 
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="{% url 'logoutpage' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Deconecter</a></li>                                
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% if request.user.is_superuser %}
+                        <div class="text-end">
+                            <a href="{% url 'Plus' %}" type="button" class="btn btn-outline-secondary bg-secondary text-white">Plus <i class="fa-solid fa-circle-plus"></i></a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        {% if messages %}
+            {% for message in messeges %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+        {% block body %}
+
+        {% endblock %}
+    </body>
+</html>

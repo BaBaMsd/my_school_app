@@ -1,0 +1,66 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+ <div class="container py-3">
+    <div class="py-1">
+        <h2> Plus des taches </h2>
+        <hr>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h5>Les Annees Scolaires</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for i in an %}
+                        <li class="list-group-item">{{ i.ann_sco_nom}}</li>
+                    {% endfor %}
+                    <li class="list-group-item"><a href="{% url 'Ann' %}" class="btn btn-info ">Ajouter</a></li>
+                </ul>
+
+            
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h5>Les Classes</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% if cl %}
+                        {% for i in cl %}
+                            <li class="list-group-item">{{ i.class_nom}}</li>
+                        {% endfor %}
+                    {% endif %}
+                    <li class="list-group-item"><a href="{% url 'Clss' %}" class="btn btn-success">Nouveau</a></li>
+                </ul>
+
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h5>Matiers</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for i in mt %}
+                            <li class="list-group-item">{{ i.matier_nom}}</li>
+                        {% endfor %}
+                    </ul>
+    
+                
+                </div>
+            </div>
+            </div>
+    </div>
+</div>
+ {% endblock %}

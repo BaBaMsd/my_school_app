@@ -1,0 +1,34 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+ <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="">
+                <div class="card mt-3 shadow">
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                <h4>Nouvelle Matier</h4>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="" class="py-1"><b></b>  </label>
+                                <input type="text" class="form-control" name="mtr" placeholder="veullez saisir la nouvele matier ">
+                                </div>
+                            <div class="py-3">
+                                <Button type="submit" class="btn   btn-success px-4" >Ajouter</Button>
+                            </div>
+                            
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ {% endblock %}

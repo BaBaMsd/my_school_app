@@ -1,0 +1,54 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+ <div class="container">
+    <div class="py-4">
+        <h3>Paiement de Scolaritè</h3>
+    <hr class="col-md-10">
+    {% if request.user.is_superuser %}
+        <a href="{% url 'Pay' etu.id %}" class="btn btn-success  px-4">Payer</a>
+    {% else %}
+        <a onclick="window.print()" class="btn btn-danger  px-4">Imprimer</a>
+    {% endif %}
+    </div>
+    <div class="py-2">    
+        <div class="card col-md-10">
+            <div class="py-2 px-6">
+    
+                <center><h5 class="">Etudiant(e) {{ etu.nom_etu}} {{ etu.prenom_etu}}</h5> </center> 
+                 
+             </div>
+            <div class="card-body">
+
+                    <div class="">
+                        <h6>liver de Paiment</h6>
+                    </div>
+                    <hr class="">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">MONTANT</th>
+                            <th scope="col">DATE</th>
+                        </thead>
+                        <tbody>
+                            {% for i in fr %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.prix}}</td>
+                                <td>{{ i.dt_pay|date:"d/m/Y"}}</td>
+                            </tr>
+                            {% endfor %}
+                         
+                           
+                        </tbody>
+                      </table>
+                    
+            </div>
+        </div>
+    </div>
+</div> 
+
+ {% endblock %}

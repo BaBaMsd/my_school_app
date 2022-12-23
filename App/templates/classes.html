@@ -1,0 +1,27 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+ <div class="container">
+<div class="py-4 px-3">
+  <div class="card mt-3 shadow">
+    <div class="card-header">
+      <center> <h4>Les Clesses</h4> </center>
+    </div>
+    <div class="card-body px-3 py-4">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+           {% for i in cls %}
+
+            <td><a href="{% url 'unClass' i.id %}" class="nav-link">{{ i.class_nom }}</a></td>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+ </div>
+
+ {% endblock %}

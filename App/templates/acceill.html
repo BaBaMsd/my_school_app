@@ -1,0 +1,78 @@
+{% extends 'principal.html' %}
+{% block title %}
+Acceill
+ {% endblock %}
+
+ {% block body %}
+ <div class="py-2 px-3">
+    <h1> Tableaux de Borde</h1>
+    <hr>
+ </div>
+ <div class="py-2 px-5">
+    <div class="row">    
+        <div class="col-sm-4">
+          <div class="card ">
+            <div class="card-body bg-primary text-white">
+              <h2 class="card-title"><center>Totale</center></h2>
+                <center><h1> {{ tt }}</h1></center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body bg-secondary text-white">
+                <h2 class="card-title"><center>Masculin</center></h2>
+                <center><h1> {{ hm }}</h1></center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body bg-success text-white">
+              <div class="card-title"><h2><center>Féminine</center></h2>
+              
+                <center><h1>{{ fm }}</h1></center>
+            </div>
+          </div>
+        </div> 
+    </div>
+  </div>
+<div class="py-3 px-3">
+  <div class="card">
+    <div class="card-header">
+      <h6><i class="fa-solid fa-bell"></i> DARNIER CINQ ELEVES INSCRIT</h6>
+    </div>
+    <div class="card-body px-3 py-2">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Nom</th>
+            <th scope="col">NNI</th>
+            <th scope="col">SEXE</th>
+            <th scope="col">DATE INSCRIT</th>
+            <th scope="col">CLASSE</th>
+            <th scope="col">CONTACT</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in tb %}
+          <tr>
+     
+           <td>{{ forloop.counter }}</td>
+            <td>{{ i.nom_etu }}</td>
+            <td>{{ i.nni_etu }}</td>
+            <td>{{ i.sexe_etu }}</td>
+            <td>{{ i.dt_iscri_etu|date:"d/m/Y"}}</td>
+            <td>{{ i.classe_etu }}</td>
+            <td>{{ i.conn_ag }}</td>
+
+          </tr>
+            {% endfor %}
+           
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+ {% endblock %}

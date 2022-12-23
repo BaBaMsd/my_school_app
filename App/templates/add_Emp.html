@@ -1,0 +1,117 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/styel.css">
+</style>
+
+</head>
+{% extends 'principal.html' %}
+{% block title %}
+Employee 
+ {% endblock %}
+
+ {% block body %}
+ <div class="px-2 py-2">
+  {% if messages %}
+  {% for message in messages %} 
+  <div class="row justify-content-center">  
+      <div class="col-md-6 py-2">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <p>{{ message }}</p> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+{% endif %}
+    <div class="card">
+        <div class="card-header">
+            <h5>Nouveau Employee</h5>
+        </div>
+        <div class="card-body">
+            <form id="form" class="row g-3" action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="col-md-4">
+                  <label for="" class="form-label"><b>Nom Complet *</b></label>
+                  <input type="text" class="form-control" Required name="nom_emp" >
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label"><b>NNI *</b></label>
+                    <input type="text" class="form-control" Required name="nni_emp" >
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefault04" class="form-label"><b>Fonction *</b></label>
+                    <select class="form-select"  Required name="fon_emp">
+                      {% for i in cl %}                    
+                        <option>{{ i }}</option>
+                        {% endfor %}
+                      </select>
+  
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefaultUsername" class="form-label"><b>Salaire *</b></label>
+                    <input type="text" class="form-control"  Required name="sr_emp">
+              
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefault03" class="form-label"><b>Credit *</b></label>
+                    <input type="text" class="form-control"  Required name="cr_emp">
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <div  id="input">
+                      <label for="" class="form-label"><b>Contact(Tel) *</b></label>
+                      <input type="text" class="form-control" id="txt1" Required name="conn_emp">                    </div>
+                    </div>
+                  
+                <div class="col-12">
+                  <button class="btn btn-success" type="submit">Enregistrer</button>
+                </div>
+              </form>
+     
+        </div>
+    </div>
+</div>
+<div class="py-3 px-2">
+    <div class="card">
+      <div class="card-header">
+        <h5><i class="fa-solid fa-bell"></i> les Liste des employees </h5>
+      </div>
+      <div class="card-body px-3 py-2">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Nom</th>
+              <th scope="col">NNI</th>
+              <th scope="col">FUNCTION</th>
+              <th scope="col">DATE RECRITMENT</th>
+              <th scope="col">CONTACT</th>
+              <th scope="col">CREDIT</th>
+              <th scope="col">SALAIRE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in emp %}
+            <tr>
+       
+             <td>{{ forloop.counter }}</td>
+              <td>{{ i.nom_emp }}</td>
+              <td>{{ i.nni_emp }}</td>
+              <td>{{ i.fonc_emp }}</td>
+              <td>{{ i.date_rc|date:"d/m/Y"}}</td>
+              <td>{{ i.num_tel_emp }}</td>
+              <td>{{ i.salair_emp }}</td>
+              <td>{{ i.credit_emp }}</td>
+              
+  
+            </tr>
+              {% endfor %}
+             
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+ {% endblock %}
+ </html>

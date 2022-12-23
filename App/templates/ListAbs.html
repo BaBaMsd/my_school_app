@@ -1,0 +1,49 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+<div class="container">
+    <div class="py-4">
+        <a onclick="window.print()" class="btn btn-danger  px-4">Imprimer</a>
+    </div>
+    <div class="py-2">    
+        <div class="card col-md-10">
+            <div class="py-2 px-6">
+    
+                <center><h5 class="">Etudiant(e)  {{ etu.nom_etu}} {{ etu.prenom_etu}}</h5> </center> 
+                 
+             </div>
+            <div class="card-body">
+
+                    <div class="">
+                        <h6>LISTE DES ABSENCES</h6>
+                    </div>
+                    <hr class="">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">DATE</th>
+                            <th scope="col">JUSTIFICATION</th>
+                        </thead>
+                        <tbody>
+                          {% for i in list %}
+                          <tr>
+                     
+                           <td>{{ forloop.counter }}</td>
+                            <td>{{ i.dt_abs|date:"d/m/Y"  }}</td>
+                            <td>{{ i.justification }}</td>
+                
+                          </tr>
+                            {% endfor %}
+                           
+                        </tbody>
+                      </table>
+                    
+            </div>
+        </div>
+    </div>
+</div> 
+
+{% endblock %}
