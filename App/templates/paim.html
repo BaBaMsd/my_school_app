@@ -1,0 +1,91 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Classes
+ {% endblock %}
+ {% block body %}
+ <div class="py-3 px-3">
+      <div class="py-1">
+      <h2>Paiement Scolaritè</h2>
+      <hr>
+  </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="col-4 py-2">
+          <select class="form-select " onchange="location = this.value;">
+             <option selected>Liste des classes</option>
+               {% for i in oth %}
+            <option value="{% url 'EtuP' i.id %}"><a href="{% url 'EtuP' i.id %}" class="nav-link">{{ i.class_nom }}</a></option>
+             {% endfor %}
+          </select>
+        </div>
+        <div class="py-3">
+          <h6 class="btn btn-secondary">Total Paiment de classe {{ x}} =  <b>{{ a }}</b> </h6>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header bg-white">
+                <h5>Totale-Paiment</h5>
+            </div>
+          <div class="card-body py-4 bg-secondary text-white">
+           
+              <center><h3>{{ c }}</h3></center>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if messages %}
+      {% for message in messages %}
+      <div class="row justify-content-center">
+          <div class="col-md-6 py-2">
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <p>{{ message }}</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+    {% endif %}
+ </div>
+ <div class=" px-3">
+    <div class="card">
+        
+      <div class="card-header bg-white">
+        <h5><center>{{ x}}</center></h5>
+      </div>
+      <div class="card-body px-3 py-4">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Nom</th>
+              <th>CONTACT</th>
+              <th>Mancialite</th>
+              <th scope="col">A-Payer</th>
+              <th scope="col">Total-Payer</th>
+              <th scope="col"  colspan="2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in etu %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ i.nom_etu }}</td>
+              <td>{{ i.conn_ag }}</td>
+              <td>{{ i.fraisFixe_etu }}</td>
+              <td>{{ i.nbrPay }} Mois</td>
+              {% if i.nbrPay > 0 %}
+              <td>{% widthratio i.nbrPay 1 i.fraisFixe_etu %}</td>
+              {% else %}
+              <td>0</td>
+              {% endif %}
+              <td><center><a href="{% url 'Pay' i.id %}" class="btn btn btn-secondary px-4 ">Payer</a></center></td>
+              <td><center><a href="{% url 'Paiment' i.id %}" class="btn btn btn-secondary px-4 " >Relévé-Paiment</a></center></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ {% endblock %}

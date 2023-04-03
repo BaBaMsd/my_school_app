@@ -48,19 +48,19 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-header bg-white">
-                    <h5>Matiers</h5>
+                    <h5>Employée Fonctionalité</h5>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
                         {% for i in mt %}
                             <li class="list-group-item">{{ i.matier_nom}}</li>
                         {% endfor %}
+                        <li class="list-group-item"><a href="{% url 'ADD' %}" class="btn btn-success ">Ajouter un Metier</a></li>
                     </ul>
     
                 
                 </div>
-            </div>
-            </div>
+        
     </div>
 </div>
  {% endblock %}

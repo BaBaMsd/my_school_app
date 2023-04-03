@@ -1,0 +1,98 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Depence
+ {% endblock %}
+ {% block body %}
+ <div class="px-3 py-3">
+    <div class="py-1">
+        <h2> Les Dépences</h2>
+        <hr>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="row justify-content-center">
+        <div class="col-md-6 py-2">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <p>{{ message }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="row">
+        <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h5>Nouveau-Dep</h5>
+            </div>
+            <div class="card-body">
+                <form id="form" class="row g-3" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col-md-4">
+                        <label for="validationDefaultUsername" class="form-label"><b>Nature</b></label>
+                        <select class="form-select" name="nature">
+                            {% for i in tp %}
+                            <option>{{ i }}</option>
+        
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefaultUsername" class="form-label"><b>Montant</b></label>
+                        <input type="text" class="form-control"  name="montant">
+
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefault03" class="form-label"><b>Date</b></label>
+                        <input type="date" class="form-control"  name="dateOperation">
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Effectuer</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+        </div>
+        
+        <div class="col-sm-4">
+            <div class="card ">
+                <div class="card-header bg-white">
+                    <h5>Totale-Dépences</h5>
+                </div>
+              <div class="card-body py-4 bg-primary text-white">
+               
+                  <center><h1>{{ b }}</h1></center>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="py-3">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h5>L'Histoir de dépence</h5>
+          </div>
+          <div class="card-body px-3 py-2">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">TYPE</th>
+                  <th scope="col">MONTANT</th>
+                  <th scope="col">DATE</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                 {% for i in ttdp %}  
+                 <tr> 
+                 <td>{{ i.naturDep }}</td>
+                  <td>{{ i.montanDep}}</td>
+                  <td>{{ i.dateDep|date:"d/m/Y"}}</td>
+                </tr> 
+                 {% endfor %}
+                
+              </tbody>
+            </table>
+          </div>
+</div>
+ {% endblock %}

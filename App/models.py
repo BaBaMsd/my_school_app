@@ -25,6 +25,8 @@ class Etudiant(models.Model):
     an_sco = models.CharField(max_length=25)
     #nom_ag = models.CharField(max_length=25, default="")
     conn_ag = models.CharField(max_length=30, default="")
+    nbrPay = models.IntegerField(default=0)
+    etu_rim = models.CharField(default=0,max_length=25)
 
 
 class Etu_classe(models.Model):
@@ -43,19 +45,23 @@ class Employe(models.Model):
     salair_emp = models.IntegerField(default=0)
     date_rc = models.DateField()
 
+class Depence(models.Model):
+    dateDep = models.DateField()
+    naturDep = models.CharField(max_length=50)
+    montanDep = models.IntegerField(default=0)
 
 
 
 
-'''class Absence(models.Model):
+class Absence(models.Model):
     dt_abs = models.DateField()
     ann_sco = models.CharField(max_length=25)
     justification = models.CharField(max_length=30)
     etu_id = models.CharField(max_length=30)
 
-class Matier(models.Model):
+class Metier(models.Model):
     matier_nom = models.CharField(max_length=25)
-
+'''
 class Note(models.Model):
     etu_nt = models.CharField(max_length=25)
     an_nt = models.CharField(max_length=25)
@@ -63,13 +69,14 @@ class Note(models.Model):
     matier_nt = models.CharField(max_length=25)
     dev_nt = models.FloatField(max_length=10)
     ex_nt = models.FloatField(max_length=10)
-
+'''
 class Frais(models.Model):
     etu = models.CharField(max_length=25)
     prix = models.IntegerField()
     dt_pay = models.DateField()
-    ann_sco = models.CharField(max_length=25, default="")
+    etuClasse = models.CharField(max_length=25)
 
-'''
+
+
 
     

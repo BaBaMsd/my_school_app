@@ -1,0 +1,45 @@
+{% extends 'principal.html' %}
+{% block title %}
+   Credité-employé
+ {% endblock %}
+ {% block body %}
+ <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="">
+                <div class="card mt-3 shadow">
+                    <div class="card-body">
+                        <form action="" class="row g-3" method="POST">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                <h4>Credité-employé</h4>
+                            </div>
+                            <hr>
+                                
+                                <div class="col-md-12">
+                                  <label for="" class="form-label">Montant</label>
+                                  <input type="text" class="form-control"  Required name="monC">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">Date-pris</label>
+                                    <input type="date" class="form-control"  Required name="dtC">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label for="" class="form-label"></label>
+                                    {% if emp %}
+                                    <input type="hidden" class="form-control"  Required name="empC" value="Credité-employé : {{ emp.nom_emp }} - {{ emp.fonc_emp}} " >
+                                    {% endif %}                                
+                                  </div>
+                                <div class="py-1">
+                                    <Button type="submit" class="btn   btn-success px-4" >Effectuer</Button>
+                                </div>
+                            
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ {% endblock %}

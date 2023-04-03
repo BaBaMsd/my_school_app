@@ -1,0 +1,85 @@
+</head>
+{% extends 'principal.html' %}
+{% block title %}
+Page d'inscription
+ {% endblock %}
+
+ {% block body %}
+ <div class="px-4 py-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Modifier Etudiant</h4>
+        </div>
+        {% if etu %}
+        <div class="card-body">
+            <form id="form" class="row g-3" action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="col-md-4">
+                  <label for="" class="form-label"><b>Nom Complet *</b></label>
+                  <input type="text" class="form-control" Required name="nom" value="{{ etu.nom_etu }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label"><b>NNI *</b></label>
+                    <input type="text" class="form-control"  name="nni_etu" value="{{ etu.nni_etu }}" >
+                  </div>
+                <div class="col-md-4">
+                  <label for="" class="form-label"><b>Date Naissance *</b></label>
+                  <input type="date" class="form-control"  name="dateNai" value="{{etu.dt_nai_etu}}">
+                </div>
+                <div class="col-md-4">
+                  <label for="" class="form-label"><b>Photo</b></label>
+                  {% if etu.image_etu %}
+                    <img src="{{etu.image_etu.url}}" alt="photo isi" width="50" height="50">
+                  {% endif%}
+                  <input type="file" class="form-control"   name="image_etu">
+                </div>
+
+                <div class="col-md-2">
+                  <label for="validationDefaultUsername" class="form-label"><b>Sexe *</b></label>
+                <input type="text" class="form-control" name="sexe_etu" value="{{etu.sexe_etu }}" >
+
+                    
+                  </div>
+                  <div class="col-md-2">
+                    <label for="" class="form-label"><b>Année Scolaire *</b></label>
+                    
+                      <input type="text" class="form-control" name="annee_scolair" value="{{etu.an_sco }}" >
+                
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefault04" class="form-label"><b>Classe *</b></label>
+                    <input type="text" class="form-control"  name="classe_etu" value="{{ etu.classe_etu}}">
+
+                      
+
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefaultUsername" class="form-label"><b>Frais d'inscription *</b></label>
+                    <input type="text" class="form-control"  name="fraisInsc_etu" value="{{ etu.fraisInsc_etu }}">
+
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationDefault03" class="form-label"><b>Mensualités *</b></label>
+                    <input type="text" class="form-control"  name="fraisFixe_etu" value="{{ etu.fraisFixe_etu }}">
+                  </div>
+
+                  <div class="col-md-4">
+                    <div  id="input">
+                      <label for="" class="form-label"><b>Contact-Parent *</b></label>
+                      <input type="text" class="form-control" id="txt1" Required name="conn_agent" value="{{ etu.conn_ag }}">
+                      <span class="indicatur"></span>
+                    </div>
+                    </div>
+                {% endif %}
+                <div class="col-12">
+                  <button class="btn btn-success" type="submit">Valider Modification </button>
+                </div>
+              </form>
+
+        </div>
+    </div>
+</div>
+
+
+ {% endblock %}
+ </html>

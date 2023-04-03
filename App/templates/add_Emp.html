@@ -10,7 +10,11 @@ Employee
  {% endblock %}
 
  {% block body %}
- <div class="px-2 py-2">
+ <div class="px-3 py-1">
+  <div class="py-1">
+    <h2> Les employees</h2>
+    <hr>
+</div>
   {% if messages %}
   {% for message in messages %} 
   <div class="row justify-content-center">  
@@ -23,26 +27,29 @@ Employee
   </div>
   {% endfor %}
 {% endif %}
+<div class="row">
+<div class="col-sm-8">
     <div class="card">
-        <div class="card-header">
-            <h5>Nouveau Employee</h5>
+        <div class="card-header bg-white">
+            <h6>Nouveau Employee</h6>
         </div>
         <div class="card-body">
             <form id="form" class="row g-3" action="" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <label for="" class="form-label"><b>Nom Complet *</b></label>
                   <input type="text" class="form-control" Required name="nom_emp" >
                 </div>
-                <div class="col-md-4">
-                    <label for="" class="form-label"><b>NNI *</b></label>
-                    <input type="text" class="form-control" Required name="nni_emp" >
-                  </div>
+                <div class="col-md-6">
+                  <label for="" class="form-label"><b>NNI *</b></label>
+                  <input type="text" class="form-control" Required name="nni_emp" >
+                </div>
+                
                   <div class="col-md-4">
                     <label for="validationDefault04" class="form-label"><b>Fonction *</b></label>
                     <select class="form-select"  Required name="fon_emp">
                       {% for i in cl %}                    
-                        <option>{{ i }}</option>
+                        <option>{{ i.matier_nom }}</option>
                         {% endfor %}
                       </select>
   
@@ -52,10 +59,6 @@ Employee
                     <input type="text" class="form-control"  Required name="sr_emp">
               
                   </div>
-                  <div class="col-md-4">
-                    <label for="validationDefault03" class="form-label"><b>Credit *</b></label>
-                    <input type="text" class="form-control"  Required name="cr_emp">
-                  </div>
                   
                   <div class="col-md-4">
                     <div  id="input">
@@ -63,7 +66,8 @@ Employee
                       <input type="text" class="form-control" id="txt1" Required name="conn_emp">                    </div>
                     </div>
                   
-                <div class="col-12">
+                <div class="col-6">
+                  <label for="" class="form-label"><b>.</b></label>
                   <button class="btn btn-success" type="submit">Enregistrer</button>
                 </div>
               </form>
@@ -71,10 +75,23 @@ Employee
         </div>
     </div>
 </div>
-<div class="py-3 px-2">
+<div class="col-sm-4">
+  <div class="card ">
+    <div class="card-header bg-white">
+      <h5>Totale-Employéés</h5>
+    </div>
+    <div class="card-body bg-success text-white py-4">
+      <h1 class="card-title"><center>{{ tmp}}</center></h1>
+        <center><h3>Employéés</h3></center>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="py-3 px-1">
     <div class="card">
-      <div class="card-header">
-        <h5><i class="fa-solid fa-bell"></i> les Liste des employees </h5>
+      <div class="card-header bg-white">
+        <h6><i class="fa-solid fa-bell"></i> les Liste des employees </h5>
       </div>
       <div class="card-body px-3 py-2">
         <table class="table table-bordered">
@@ -82,12 +99,12 @@ Employee
             <tr>
               <th scope="col">N°</th>
               <th scope="col">Nom</th>
-              <th scope="col">NNI</th>
               <th scope="col">FUNCTION</th>
-              <th scope="col">DATE RECRITMENT</th>
               <th scope="col">CONTACT</th>
-              <th scope="col">CREDIT</th>
               <th scope="col">SALAIRE</th>
+              <th scope="col">CREDIT</th>
+              <th colspan="2"></th>
+            
             </tr>
           </thead>
           <tbody>
@@ -96,14 +113,12 @@ Employee
        
              <td>{{ forloop.counter }}</td>
               <td>{{ i.nom_emp }}</td>
-              <td>{{ i.nni_emp }}</td>
               <td>{{ i.fonc_emp }}</td>
-              <td>{{ i.date_rc|date:"d/m/Y"}}</td>
               <td>{{ i.num_tel_emp }}</td>
               <td>{{ i.salair_emp }}</td>
               <td>{{ i.credit_emp }}</td>
-              
-  
+              <td><center><a href="{% url 'Credite' i.id %}" class="btn btn btn-success px-4 "">credité</a></center></td>
+              <td><center><a href="{% url 'SalaireEmp' i.id %}" class="btn btn btn-success px-4 "">Payé-salaires</a></center></td>
             </tr>
               {% endfor %}
              
